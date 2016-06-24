@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://www.regcheck.org.uk/api/reg.asmx?wsdl" docRef="https://www.regcheck.org.uk/api/reg.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://www.regcheck.org.uk/api/reg.asmx" xmlns:q1="http://regcheck.org.uk" binding="q1:CarRegSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://www.regcheck.org.uk/api/reg.asmx" xmlns:q2="http://regcheck.org.uk" binding="q2:CarRegSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

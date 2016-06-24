@@ -1,0 +1,2364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://regcheck.org.uk" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://regcheck.org.uk" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://regcheck.org.uk">
+      <s:element name="CarSpecifications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="make" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CarSpecificationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CarSpecificationsResult" type="tns:DataGrid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataGrid">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="json" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="columnNames" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="data" type="tns:ArrayOfArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UKMOT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UKMOTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UKMOTResult" type="tns:UKMOTData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UKMOTData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Tests" type="tns:ArrayOfUKTest" />
+          <s:element minOccurs="0" maxOccurs="1" name="taxDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Json" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtendedInformation" type="tns:ArrayOfArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtendedInformationJson" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfUKTest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UKTest" nillable="true" type="tns:UKTest" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UKTest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TestDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExpiryDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Odometer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TestNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FailureReasons" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckSouthAfrica">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSouthAfricaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckSouthAfricaResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Vehicle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="vehicleJson" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vehicleXml" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numberOfSeats" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="carValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="immobiliser" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vehicleData">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="ABICode">
+                  <s:complexType>
+                    <s:simpleContent>
+                      <s:extension base="s:integer">
+                        <s:attribute name="type" type="s:NCName" />
+                      </s:extension>
+                    </s:simpleContent>
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="Description">
+                  <s:complexType mixed="true">
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="RegistrationYear">
+                  <s:complexType>
+                    <s:simpleContent>
+                      <s:extension base="s:integer">
+                        <s:attribute name="type" type="s:NCName" />
+                      </s:extension>
+                    </s:simpleContent>
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="ManufactureYearFrom">
+                  <s:complexType>
+                    <s:simpleContent>
+                      <s:extension base="s:integer">
+                        <s:attribute name="type" type="s:NCName" />
+                      </s:extension>
+                    </s:simpleContent>
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="ManufactureYearTo">
+                  <s:complexType>
+                    <s:simpleContent>
+                      <s:extension base="s:integer">
+                        <s:attribute name="type" type="s:NCName" />
+                      </s:extension>
+                    </s:simpleContent>
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="CarMake">
+                  <s:complexType>
+                    <s:sequence>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentValue">
+                        <s:complexType>
+                          <s:simpleContent>
+                            <s:extension base="s:integer">
+                              <s:attribute name="type" type="s:NCName" />
+                            </s:extension>
+                          </s:simpleContent>
+                        </s:complexType>
+                      </s:element>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentTextValue">
+                        <s:complexType mixed="true">
+                          <s:attribute name="type" type="s:NCName" />
+                        </s:complexType>
+                      </s:element>
+                    </s:sequence>
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="CarModel">
+                  <s:complexType>
+                    <s:simpleContent>
+                      <s:extension base="s:integer">
+                        <s:attribute name="type" type="s:NCName" />
+                      </s:extension>
+                    </s:simpleContent>
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="BodyStyle">
+                  <s:complexType>
+                    <s:sequence>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentValue">
+                        <s:complexType>
+                          <s:simpleContent>
+                            <s:extension base="s:integer">
+                              <s:attribute name="type" type="s:NCName" />
+                            </s:extension>
+                          </s:simpleContent>
+                        </s:complexType>
+                      </s:element>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentTextValue">
+                        <s:complexType mixed="true">
+                          <s:attribute name="type" type="s:NCName" />
+                        </s:complexType>
+                      </s:element>
+                    </s:sequence>
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="EngineSize">
+                  <s:complexType>
+                    <s:sequence>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentValue">
+                        <s:complexType>
+                          <s:simpleContent>
+                            <s:extension base="s:integer">
+                              <s:attribute name="type" type="s:NCName" />
+                            </s:extension>
+                          </s:simpleContent>
+                        </s:complexType>
+                      </s:element>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentTextValue">
+                        <s:complexType mixed="true">
+                          <s:attribute name="type" type="s:NCName" />
+                        </s:complexType>
+                      </s:element>
+                    </s:sequence>
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="NumberOfDoors">
+                  <s:complexType>
+                    <s:sequence>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentValue">
+                        <s:complexType>
+                          <s:simpleContent>
+                            <s:extension base="s:integer">
+                              <s:attribute name="type" type="s:NCName" />
+                            </s:extension>
+                          </s:simpleContent>
+                        </s:complexType>
+                      </s:element>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentTextValue">
+                        <s:complexType mixed="true">
+                          <s:attribute name="type" type="s:NCName" />
+                        </s:complexType>
+                      </s:element>
+                    </s:sequence>
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="Transmission">
+                  <s:complexType>
+                    <s:sequence>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentValue">
+                        <s:complexType>
+                          <s:simpleContent>
+                            <s:extension base="s:integer">
+                              <s:attribute name="type" type="s:NCName" />
+                            </s:extension>
+                          </s:simpleContent>
+                        </s:complexType>
+                      </s:element>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentTextValue">
+                        <s:complexType mixed="true">
+                          <s:attribute name="type" type="s:NCName" />
+                        </s:complexType>
+                      </s:element>
+                    </s:sequence>
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="FuelType">
+                  <s:complexType>
+                    <s:sequence>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentValue">
+                        <s:complexType>
+                          <s:simpleContent>
+                            <s:extension base="s:integer">
+                              <s:attribute name="type" type="s:NCName" />
+                            </s:extension>
+                          </s:simpleContent>
+                        </s:complexType>
+                      </s:element>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentTextValue">
+                        <s:complexType mixed="true">
+                          <s:attribute name="type" type="s:NCName" />
+                        </s:complexType>
+                      </s:element>
+                    </s:sequence>
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="MakeDescription">
+                  <s:complexType>
+                    <s:simpleContent>
+                      <s:extension base="s:NCName">
+                        <s:attribute name="type" type="s:NCName" />
+                      </s:extension>
+                    </s:simpleContent>
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="ModelDescription">
+                  <s:complexType mixed="true">
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="Immobiliser">
+                  <s:complexType>
+                    <s:sequence>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentValue">
+                        <s:complexType>
+                          <s:simpleContent>
+                            <s:extension base="s:integer">
+                              <s:attribute name="type" type="s:NCName" />
+                            </s:extension>
+                          </s:simpleContent>
+                        </s:complexType>
+                      </s:element>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentTextValue">
+                        <s:complexType mixed="true">
+                          <s:attribute name="type" type="s:NCName" />
+                        </s:complexType>
+                      </s:element>
+                    </s:sequence>
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="NumberOfSeats">
+                  <s:complexType>
+                    <s:sequence>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentValue">
+                        <s:complexType>
+                          <s:simpleContent>
+                            <s:extension base="s:integer">
+                              <s:attribute name="type" type="s:NCName" />
+                            </s:extension>
+                          </s:simpleContent>
+                        </s:complexType>
+                      </s:element>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentTextValue">
+                        <s:complexType mixed="true">
+                          <s:attribute name="type" type="s:NCName" />
+                        </s:complexType>
+                      </s:element>
+                    </s:sequence>
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="IndicativeValue">
+                  <s:complexType>
+                    <s:simpleContent>
+                      <s:extension base="s:decimal">
+                        <s:attribute name="type" type="s:NCName" />
+                      </s:extension>
+                    </s:simpleContent>
+                  </s:complexType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="DriverSide">
+                  <s:complexType>
+                    <s:sequence>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentValue">
+                        <s:complexType>
+                          <s:simpleContent>
+                            <s:extension base="s:integer">
+                              <s:attribute name="type" type="s:NCName" />
+                            </s:extension>
+                          </s:simpleContent>
+                        </s:complexType>
+                      </s:element>
+                      <s:element minOccurs="0" maxOccurs="1" name="CurrentTextValue">
+                        <s:complexType mixed="true">
+                          <s:attribute name="type" type="s:NCName" />
+                        </s:complexType>
+                      </s:element>
+                    </s:sequence>
+                    <s:attribute name="type" type="s:NCName" />
+                  </s:complexType>
+                </s:element>
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckEstonia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckEstoniaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckEstoniaResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckNewZealand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckNewZealandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckNewZealandResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUSA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUSAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckUSAResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAustralia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAustraliaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckAustraliaResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSpain">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSpainResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckSpainResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckFrance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckFranceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckFranceResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDenmark">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDenmarkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckDenmarkResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckFinland">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckFinlandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckFinlandResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSweden">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSwedenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckSwedenResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckNorway">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckNorwayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckNorwayResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPortugal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPortugalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckPortugalResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckNetherlands">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckNetherlandsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckNetherlandsResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckItaly">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckItalyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckItalyResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIreland">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIrelandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckIrelandResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Check">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIndia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIndiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckIndiaResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckHungary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckHungaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckHungaryResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUAE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUAEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckUAEResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSlovakia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSlovakiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckSlovakiaResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VinCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Vin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VinCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VinCheckResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckMotorBikeUK">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckMotorBikeUKResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckMotorBikeUKResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataGrid" nillable="true" type="tns:DataGrid" />
+      <s:element name="UKMOTData" nillable="true" type="tns:UKMOTData" />
+      <s:element name="Vehicle" nillable="true" type="tns:Vehicle" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CarSpecificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:CarSpecifications" />
+  </wsdl:message>
+  <wsdl:message name="CarSpecificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:CarSpecificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UKMOTSoapIn">
+    <wsdl:part name="parameters" element="tns:UKMOT" />
+  </wsdl:message>
+  <wsdl:message name="UKMOTSoapOut">
+    <wsdl:part name="parameters" element="tns:UKMOTResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSouthAfricaSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSouthAfrica" />
+  </wsdl:message>
+  <wsdl:message name="CheckSouthAfricaSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSouthAfricaResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckEstoniaSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckEstonia" />
+  </wsdl:message>
+  <wsdl:message name="CheckEstoniaSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckEstoniaResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewZealandSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckNewZealand" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewZealandSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckNewZealandResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckUSASoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUSA" />
+  </wsdl:message>
+  <wsdl:message name="CheckUSASoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUSAResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckAustraliaSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckAustralia" />
+  </wsdl:message>
+  <wsdl:message name="CheckAustraliaSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckAustraliaResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSpainSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSpain" />
+  </wsdl:message>
+  <wsdl:message name="CheckSpainSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSpainResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckFranceSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckFrance" />
+  </wsdl:message>
+  <wsdl:message name="CheckFranceSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckFranceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckDenmarkSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDenmark" />
+  </wsdl:message>
+  <wsdl:message name="CheckDenmarkSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDenmarkResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckFinlandSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckFinland" />
+  </wsdl:message>
+  <wsdl:message name="CheckFinlandSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckFinlandResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSwedenSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSweden" />
+  </wsdl:message>
+  <wsdl:message name="CheckSwedenSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSwedenResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckNorwaySoapIn">
+    <wsdl:part name="parameters" element="tns:CheckNorway" />
+  </wsdl:message>
+  <wsdl:message name="CheckNorwaySoapOut">
+    <wsdl:part name="parameters" element="tns:CheckNorwayResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckPortugalSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckPortugal" />
+  </wsdl:message>
+  <wsdl:message name="CheckPortugalSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckPortugalResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckNetherlandsSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckNetherlands" />
+  </wsdl:message>
+  <wsdl:message name="CheckNetherlandsSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckNetherlandsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckItalySoapIn">
+    <wsdl:part name="parameters" element="tns:CheckItaly" />
+  </wsdl:message>
+  <wsdl:message name="CheckItalySoapOut">
+    <wsdl:part name="parameters" element="tns:CheckItalyResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckIrelandSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckIreland" />
+  </wsdl:message>
+  <wsdl:message name="CheckIrelandSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckIrelandResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSoapIn">
+    <wsdl:part name="parameters" element="tns:Check" />
+  </wsdl:message>
+  <wsdl:message name="CheckSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckIndiaSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckIndia" />
+  </wsdl:message>
+  <wsdl:message name="CheckIndiaSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckIndiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckHungarySoapIn">
+    <wsdl:part name="parameters" element="tns:CheckHungary" />
+  </wsdl:message>
+  <wsdl:message name="CheckHungarySoapOut">
+    <wsdl:part name="parameters" element="tns:CheckHungaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckUAESoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUAE" />
+  </wsdl:message>
+  <wsdl:message name="CheckUAESoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUAEResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSlovakiaSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSlovakia" />
+  </wsdl:message>
+  <wsdl:message name="CheckSlovakiaSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSlovakiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="VinCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:VinCheck" />
+  </wsdl:message>
+  <wsdl:message name="VinCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:VinCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckMotorBikeUKSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckMotorBikeUK" />
+  </wsdl:message>
+  <wsdl:message name="CheckMotorBikeUKSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckMotorBikeUKResponse" />
+  </wsdl:message>
+  <wsdl:message name="CarSpecificationsHttpGetIn">
+    <wsdl:part name="make" type="s:string" />
+    <wsdl:part name="model" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CarSpecificationsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataGrid" />
+  </wsdl:message>
+  <wsdl:message name="UKMOTHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="Model" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UKMOTHttpGetOut">
+    <wsdl:part name="Body" element="tns:UKMOTData" />
+  </wsdl:message>
+  <wsdl:message name="CheckSouthAfricaHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSouthAfricaHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckEstoniaHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckEstoniaHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewZealandHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewZealandHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckUSAHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckUSAHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckAustraliaHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckAustraliaHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckSpainHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSpainHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckFranceHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckFranceHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckDenmarkHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckDenmarkHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckFinlandHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckFinlandHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckSwedenHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSwedenHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckNorwayHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckNorwayHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckPortugalHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckPortugalHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckNetherlandsHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckNetherlandsHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckItalyHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckItalyHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckIrelandHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckIrelandHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckIndiaHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckIndiaHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckHungaryHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckHungaryHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckUAEHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckUAEHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckSlovakiaHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSlovakiaHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="VinCheckHttpGetIn">
+    <wsdl:part name="Vin" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VinCheckHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckMotorBikeUKHttpGetIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckMotorBikeUKHttpGetOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CarSpecificationsHttpPostIn">
+    <wsdl:part name="make" type="s:string" />
+    <wsdl:part name="model" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CarSpecificationsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataGrid" />
+  </wsdl:message>
+  <wsdl:message name="UKMOTHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="Model" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UKMOTHttpPostOut">
+    <wsdl:part name="Body" element="tns:UKMOTData" />
+  </wsdl:message>
+  <wsdl:message name="CheckSouthAfricaHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSouthAfricaHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckEstoniaHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckEstoniaHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewZealandHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewZealandHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckUSAHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckUSAHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckAustraliaHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckAustraliaHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckSpainHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSpainHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckFranceHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckFranceHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckDenmarkHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckDenmarkHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckFinlandHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckFinlandHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckSwedenHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSwedenHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckNorwayHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckNorwayHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckPortugalHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckPortugalHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckNetherlandsHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckNetherlandsHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckItalyHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckItalyHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckIrelandHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckIrelandHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckIndiaHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckIndiaHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckHungaryHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckHungaryHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckUAEHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckUAEHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckSlovakiaHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSlovakiaHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="VinCheckHttpPostIn">
+    <wsdl:part name="Vin" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VinCheckHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="CheckMotorBikeUKHttpPostIn">
+    <wsdl:part name="RegistrationNumber" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckMotorBikeUKHttpPostOut">
+    <wsdl:part name="Body" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:portType name="CarRegSoap">
+    <wsdl:operation name="CarSpecifications">
+      <wsdl:input message="tns:CarSpecificationsSoapIn" />
+      <wsdl:output message="tns:CarSpecificationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UKMOT">
+      <wsdl:input message="tns:UKMOTSoapIn" />
+      <wsdl:output message="tns:UKMOTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSouthAfrica">
+      <wsdl:input message="tns:CheckSouthAfricaSoapIn" />
+      <wsdl:output message="tns:CheckSouthAfricaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckEstonia">
+      <wsdl:input message="tns:CheckEstoniaSoapIn" />
+      <wsdl:output message="tns:CheckEstoniaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewZealand">
+      <wsdl:input message="tns:CheckNewZealandSoapIn" />
+      <wsdl:output message="tns:CheckNewZealandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUSA">
+      <wsdl:input message="tns:CheckUSASoapIn" />
+      <wsdl:output message="tns:CheckUSASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAustralia">
+      <wsdl:input message="tns:CheckAustraliaSoapIn" />
+      <wsdl:output message="tns:CheckAustraliaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSpain">
+      <wsdl:input message="tns:CheckSpainSoapIn" />
+      <wsdl:output message="tns:CheckSpainSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckFrance">
+      <wsdl:input message="tns:CheckFranceSoapIn" />
+      <wsdl:output message="tns:CheckFranceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDenmark">
+      <wsdl:input message="tns:CheckDenmarkSoapIn" />
+      <wsdl:output message="tns:CheckDenmarkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckFinland">
+      <wsdl:input message="tns:CheckFinlandSoapIn" />
+      <wsdl:output message="tns:CheckFinlandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSweden">
+      <wsdl:input message="tns:CheckSwedenSoapIn" />
+      <wsdl:output message="tns:CheckSwedenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNorway">
+      <wsdl:input message="tns:CheckNorwaySoapIn" />
+      <wsdl:output message="tns:CheckNorwaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPortugal">
+      <wsdl:input message="tns:CheckPortugalSoapIn" />
+      <wsdl:output message="tns:CheckPortugalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNetherlands">
+      <wsdl:input message="tns:CheckNetherlandsSoapIn" />
+      <wsdl:output message="tns:CheckNetherlandsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckItaly">
+      <wsdl:input message="tns:CheckItalySoapIn" />
+      <wsdl:output message="tns:CheckItalySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIreland">
+      <wsdl:input message="tns:CheckIrelandSoapIn" />
+      <wsdl:output message="tns:CheckIrelandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Check">
+      <wsdl:input message="tns:CheckSoapIn" />
+      <wsdl:output message="tns:CheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIndia">
+      <wsdl:input message="tns:CheckIndiaSoapIn" />
+      <wsdl:output message="tns:CheckIndiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckHungary">
+      <wsdl:input message="tns:CheckHungarySoapIn" />
+      <wsdl:output message="tns:CheckHungarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUAE">
+      <wsdl:input message="tns:CheckUAESoapIn" />
+      <wsdl:output message="tns:CheckUAESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSlovakia">
+      <wsdl:input message="tns:CheckSlovakiaSoapIn" />
+      <wsdl:output message="tns:CheckSlovakiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VinCheck">
+      <wsdl:input message="tns:VinCheckSoapIn" />
+      <wsdl:output message="tns:VinCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckMotorBikeUK">
+      <wsdl:input message="tns:CheckMotorBikeUKSoapIn" />
+      <wsdl:output message="tns:CheckMotorBikeUKSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CarRegHttpGet">
+    <wsdl:operation name="CarSpecifications">
+      <wsdl:input message="tns:CarSpecificationsHttpGetIn" />
+      <wsdl:output message="tns:CarSpecificationsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UKMOT">
+      <wsdl:input message="tns:UKMOTHttpGetIn" />
+      <wsdl:output message="tns:UKMOTHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSouthAfrica">
+      <wsdl:input message="tns:CheckSouthAfricaHttpGetIn" />
+      <wsdl:output message="tns:CheckSouthAfricaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckEstonia">
+      <wsdl:input message="tns:CheckEstoniaHttpGetIn" />
+      <wsdl:output message="tns:CheckEstoniaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewZealand">
+      <wsdl:input message="tns:CheckNewZealandHttpGetIn" />
+      <wsdl:output message="tns:CheckNewZealandHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUSA">
+      <wsdl:input message="tns:CheckUSAHttpGetIn" />
+      <wsdl:output message="tns:CheckUSAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAustralia">
+      <wsdl:input message="tns:CheckAustraliaHttpGetIn" />
+      <wsdl:output message="tns:CheckAustraliaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSpain">
+      <wsdl:input message="tns:CheckSpainHttpGetIn" />
+      <wsdl:output message="tns:CheckSpainHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckFrance">
+      <wsdl:input message="tns:CheckFranceHttpGetIn" />
+      <wsdl:output message="tns:CheckFranceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDenmark">
+      <wsdl:input message="tns:CheckDenmarkHttpGetIn" />
+      <wsdl:output message="tns:CheckDenmarkHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckFinland">
+      <wsdl:input message="tns:CheckFinlandHttpGetIn" />
+      <wsdl:output message="tns:CheckFinlandHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSweden">
+      <wsdl:input message="tns:CheckSwedenHttpGetIn" />
+      <wsdl:output message="tns:CheckSwedenHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNorway">
+      <wsdl:input message="tns:CheckNorwayHttpGetIn" />
+      <wsdl:output message="tns:CheckNorwayHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPortugal">
+      <wsdl:input message="tns:CheckPortugalHttpGetIn" />
+      <wsdl:output message="tns:CheckPortugalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNetherlands">
+      <wsdl:input message="tns:CheckNetherlandsHttpGetIn" />
+      <wsdl:output message="tns:CheckNetherlandsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckItaly">
+      <wsdl:input message="tns:CheckItalyHttpGetIn" />
+      <wsdl:output message="tns:CheckItalyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIreland">
+      <wsdl:input message="tns:CheckIrelandHttpGetIn" />
+      <wsdl:output message="tns:CheckIrelandHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Check">
+      <wsdl:input message="tns:CheckHttpGetIn" />
+      <wsdl:output message="tns:CheckHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIndia">
+      <wsdl:input message="tns:CheckIndiaHttpGetIn" />
+      <wsdl:output message="tns:CheckIndiaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckHungary">
+      <wsdl:input message="tns:CheckHungaryHttpGetIn" />
+      <wsdl:output message="tns:CheckHungaryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUAE">
+      <wsdl:input message="tns:CheckUAEHttpGetIn" />
+      <wsdl:output message="tns:CheckUAEHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSlovakia">
+      <wsdl:input message="tns:CheckSlovakiaHttpGetIn" />
+      <wsdl:output message="tns:CheckSlovakiaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VinCheck">
+      <wsdl:input message="tns:VinCheckHttpGetIn" />
+      <wsdl:output message="tns:VinCheckHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckMotorBikeUK">
+      <wsdl:input message="tns:CheckMotorBikeUKHttpGetIn" />
+      <wsdl:output message="tns:CheckMotorBikeUKHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CarRegHttpPost">
+    <wsdl:operation name="CarSpecifications">
+      <wsdl:input message="tns:CarSpecificationsHttpPostIn" />
+      <wsdl:output message="tns:CarSpecificationsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UKMOT">
+      <wsdl:input message="tns:UKMOTHttpPostIn" />
+      <wsdl:output message="tns:UKMOTHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSouthAfrica">
+      <wsdl:input message="tns:CheckSouthAfricaHttpPostIn" />
+      <wsdl:output message="tns:CheckSouthAfricaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckEstonia">
+      <wsdl:input message="tns:CheckEstoniaHttpPostIn" />
+      <wsdl:output message="tns:CheckEstoniaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewZealand">
+      <wsdl:input message="tns:CheckNewZealandHttpPostIn" />
+      <wsdl:output message="tns:CheckNewZealandHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUSA">
+      <wsdl:input message="tns:CheckUSAHttpPostIn" />
+      <wsdl:output message="tns:CheckUSAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAustralia">
+      <wsdl:input message="tns:CheckAustraliaHttpPostIn" />
+      <wsdl:output message="tns:CheckAustraliaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSpain">
+      <wsdl:input message="tns:CheckSpainHttpPostIn" />
+      <wsdl:output message="tns:CheckSpainHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckFrance">
+      <wsdl:input message="tns:CheckFranceHttpPostIn" />
+      <wsdl:output message="tns:CheckFranceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDenmark">
+      <wsdl:input message="tns:CheckDenmarkHttpPostIn" />
+      <wsdl:output message="tns:CheckDenmarkHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckFinland">
+      <wsdl:input message="tns:CheckFinlandHttpPostIn" />
+      <wsdl:output message="tns:CheckFinlandHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSweden">
+      <wsdl:input message="tns:CheckSwedenHttpPostIn" />
+      <wsdl:output message="tns:CheckSwedenHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNorway">
+      <wsdl:input message="tns:CheckNorwayHttpPostIn" />
+      <wsdl:output message="tns:CheckNorwayHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPortugal">
+      <wsdl:input message="tns:CheckPortugalHttpPostIn" />
+      <wsdl:output message="tns:CheckPortugalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNetherlands">
+      <wsdl:input message="tns:CheckNetherlandsHttpPostIn" />
+      <wsdl:output message="tns:CheckNetherlandsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckItaly">
+      <wsdl:input message="tns:CheckItalyHttpPostIn" />
+      <wsdl:output message="tns:CheckItalyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIreland">
+      <wsdl:input message="tns:CheckIrelandHttpPostIn" />
+      <wsdl:output message="tns:CheckIrelandHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Check">
+      <wsdl:input message="tns:CheckHttpPostIn" />
+      <wsdl:output message="tns:CheckHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIndia">
+      <wsdl:input message="tns:CheckIndiaHttpPostIn" />
+      <wsdl:output message="tns:CheckIndiaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckHungary">
+      <wsdl:input message="tns:CheckHungaryHttpPostIn" />
+      <wsdl:output message="tns:CheckHungaryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUAE">
+      <wsdl:input message="tns:CheckUAEHttpPostIn" />
+      <wsdl:output message="tns:CheckUAEHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSlovakia">
+      <wsdl:input message="tns:CheckSlovakiaHttpPostIn" />
+      <wsdl:output message="tns:CheckSlovakiaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VinCheck">
+      <wsdl:input message="tns:VinCheckHttpPostIn" />
+      <wsdl:output message="tns:VinCheckHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckMotorBikeUK">
+      <wsdl:input message="tns:CheckMotorBikeUKHttpPostIn" />
+      <wsdl:output message="tns:CheckMotorBikeUKHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CarRegSoap" type="tns:CarRegSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CarSpecifications">
+      <soap:operation soapAction="http://regcheck.org.uk/CarSpecifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UKMOT">
+      <soap:operation soapAction="http://regcheck.org.uk/UKMOT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSouthAfrica">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckSouthAfrica" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckEstonia">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckEstonia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewZealand">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckNewZealand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUSA">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckUSA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAustralia">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckAustralia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSpain">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckSpain" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckFrance">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckFrance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDenmark">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckDenmark" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckFinland">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckFinland" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSweden">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckSweden" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNorway">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckNorway" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPortugal">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckPortugal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNetherlands">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckNetherlands" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckItaly">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckItaly" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIreland">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckIreland" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Check">
+      <soap:operation soapAction="http://regcheck.org.uk/Check" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIndia">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckIndia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHungary">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckHungary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUAE">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckUAE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSlovakia">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckSlovakia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VinCheck">
+      <soap:operation soapAction="http://regcheck.org.uk/VinCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMotorBikeUK">
+      <soap:operation soapAction="http://regcheck.org.uk/CheckMotorBikeUK" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CarRegSoap12" type="tns:CarRegSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CarSpecifications">
+      <soap12:operation soapAction="http://regcheck.org.uk/CarSpecifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UKMOT">
+      <soap12:operation soapAction="http://regcheck.org.uk/UKMOT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSouthAfrica">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckSouthAfrica" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckEstonia">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckEstonia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewZealand">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckNewZealand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUSA">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckUSA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAustralia">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckAustralia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSpain">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckSpain" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckFrance">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckFrance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDenmark">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckDenmark" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckFinland">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckFinland" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSweden">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckSweden" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNorway">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckNorway" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPortugal">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckPortugal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNetherlands">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckNetherlands" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckItaly">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckItaly" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIreland">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckIreland" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Check">
+      <soap12:operation soapAction="http://regcheck.org.uk/Check" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIndia">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckIndia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHungary">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckHungary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUAE">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckUAE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSlovakia">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckSlovakia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VinCheck">
+      <soap12:operation soapAction="http://regcheck.org.uk/VinCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMotorBikeUK">
+      <soap12:operation soapAction="http://regcheck.org.uk/CheckMotorBikeUK" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CarRegHttpGet" type="tns:CarRegHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CarSpecifications">
+      <http:operation location="/CarSpecifications" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UKMOT">
+      <http:operation location="/UKMOT" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSouthAfrica">
+      <http:operation location="/CheckSouthAfrica" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckEstonia">
+      <http:operation location="/CheckEstonia" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewZealand">
+      <http:operation location="/CheckNewZealand" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUSA">
+      <http:operation location="/CheckUSA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAustralia">
+      <http:operation location="/CheckAustralia" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSpain">
+      <http:operation location="/CheckSpain" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckFrance">
+      <http:operation location="/CheckFrance" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDenmark">
+      <http:operation location="/CheckDenmark" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckFinland">
+      <http:operation location="/CheckFinland" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSweden">
+      <http:operation location="/CheckSweden" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNorway">
+      <http:operation location="/CheckNorway" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPortugal">
+      <http:operation location="/CheckPortugal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNetherlands">
+      <http:operation location="/CheckNetherlands" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckItaly">
+      <http:operation location="/CheckItaly" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIreland">
+      <http:operation location="/CheckIreland" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Check">
+      <http:operation location="/Check" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIndia">
+      <http:operation location="/CheckIndia" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHungary">
+      <http:operation location="/CheckHungary" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUAE">
+      <http:operation location="/CheckUAE" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSlovakia">
+      <http:operation location="/CheckSlovakia" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VinCheck">
+      <http:operation location="/VinCheck" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMotorBikeUK">
+      <http:operation location="/CheckMotorBikeUK" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CarRegHttpPost" type="tns:CarRegHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CarSpecifications">
+      <http:operation location="/CarSpecifications" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UKMOT">
+      <http:operation location="/UKMOT" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSouthAfrica">
+      <http:operation location="/CheckSouthAfrica" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckEstonia">
+      <http:operation location="/CheckEstonia" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewZealand">
+      <http:operation location="/CheckNewZealand" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUSA">
+      <http:operation location="/CheckUSA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAustralia">
+      <http:operation location="/CheckAustralia" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSpain">
+      <http:operation location="/CheckSpain" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckFrance">
+      <http:operation location="/CheckFrance" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDenmark">
+      <http:operation location="/CheckDenmark" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckFinland">
+      <http:operation location="/CheckFinland" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSweden">
+      <http:operation location="/CheckSweden" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNorway">
+      <http:operation location="/CheckNorway" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPortugal">
+      <http:operation location="/CheckPortugal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNetherlands">
+      <http:operation location="/CheckNetherlands" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckItaly">
+      <http:operation location="/CheckItaly" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIreland">
+      <http:operation location="/CheckIreland" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Check">
+      <http:operation location="/Check" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIndia">
+      <http:operation location="/CheckIndia" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHungary">
+      <http:operation location="/CheckHungary" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUAE">
+      <http:operation location="/CheckUAE" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSlovakia">
+      <http:operation location="/CheckSlovakia" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VinCheck">
+      <http:operation location="/VinCheck" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMotorBikeUK">
+      <http:operation location="/CheckMotorBikeUK" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CarReg">
+    <wsdl:port name="CarRegSoap" binding="tns:CarRegSoap">
+      <soap:address location="https://www.regcheck.org.uk/api/reg.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CarRegSoap12" binding="tns:CarRegSoap12">
+      <soap12:address location="https://www.regcheck.org.uk/api/reg.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CarRegHttpGet" binding="tns:CarRegHttpGet">
+      <http:address location="https://www.regcheck.org.uk/api/reg.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CarRegHttpPost" binding="tns:CarRegHttpPost">
+      <http:address location="https://www.regcheck.org.uk/api/reg.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,20 @@
+version: 1.0.{build}
+skip_tags: true
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_informational_version: "{version}"
+install:
+  - nuget sources add -Name MyGet -Source https://www.myget.org/F/guildford-bc/api/v2
+before_build:
+  - nuget restore
+build:
+  publish_nuget: true
+  publish_nuget_symbols: true
+  verbosity: minimal
+deploy:
+- provider: NuGet
+  server: https://www.myget.org/F/guildford-bc/api/v2/package
+  api_key:
+    secure: 3HSNmGS95yv4VGx8Mi2S+6xdKZ1Qkvr0P3tGYWYJu235GUGWUyXbHx1iZ4gmqeP2
+  symbol_server: https://nuget.symbolsource.org/MyGet/guildford-bc
