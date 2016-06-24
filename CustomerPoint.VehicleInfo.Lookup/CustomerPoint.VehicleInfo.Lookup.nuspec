@@ -15,6 +15,7 @@
     <copyright>Copyright Guildford Borough Council 2016</copyright>
     <language>en-GB</language>
     <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Runtime.Caching" targetFramework="net45" />
       <frameworkAssembly assemblyName="System.ServiceModel" targetFramework="net45" />
     </frameworkAssemblies>
   </metadata>
