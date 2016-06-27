@@ -19,169 +19,97 @@ namespace CustomerPoint.VehicleInfo.RegCheckApi {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.DataGrid CarSpecifications(string make, string model, int year);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CarSpecifications", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.DataGrid> CarSpecificationsAsync(string make, string model, int year);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/UKMOT", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.UKMOTData UKMOT(string RegistrationNumber, string Model, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/UKMOT", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.UKMOTData> UKMOTAsync(string RegistrationNumber, string Model, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckSouthAfrica", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckSouthAfrica(string RegistrationNumber, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckSouthAfrica", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckSouthAfricaAsync(string RegistrationNumber, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckEstonia", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckEstonia(string RegistrationNumber, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckEstonia", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckEstoniaAsync(string RegistrationNumber, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckNewZealand", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckNewZealand(string RegistrationNumber, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckNewZealand", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckNewZealandAsync(string RegistrationNumber, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckUSA", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckUSA(string RegistrationNumber, string State, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckUSA", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckUSAAsync(string RegistrationNumber, string State, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckAustralia", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckAustralia(string RegistrationNumber, string State, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckAustralia", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckAustraliaAsync(string RegistrationNumber, string State, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckSpain", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckSpain(string RegistrationNumber, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckSpain", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckSpainAsync(string RegistrationNumber, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckFrance", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckFrance(string RegistrationNumber, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckFrance", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckFranceAsync(string RegistrationNumber, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckDenmark", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckDenmark(string RegistrationNumber, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckDenmark", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckDenmarkAsync(string RegistrationNumber, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckFinland", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckFinland(string RegistrationNumber, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckFinland", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckFinlandAsync(string RegistrationNumber, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckSweden", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckSweden(string RegistrationNumber, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckSweden", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckSwedenAsync(string RegistrationNumber, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckNorway", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckNorway(string RegistrationNumber, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckNorway", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckNorwayAsync(string RegistrationNumber, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckPortugal", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckPortugal(string RegistrationNumber, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckPortugal", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckPortugalAsync(string RegistrationNumber, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckNetherlands", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckNetherlands(string RegistrationNumber, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckNetherlands", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckNetherlandsAsync(string RegistrationNumber, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckItaly", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckItaly(string RegistrationNumber, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckItaly", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckItalyAsync(string RegistrationNumber, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckIreland", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckIreland(string RegistrationNumber, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckIreland", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckIrelandAsync(string RegistrationNumber, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/Check", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle Check(string RegistrationNumber, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/Check", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckAsync(string RegistrationNumber, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckIndia", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckIndia(string RegistrationNumber, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckIndia", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckIndiaAsync(string RegistrationNumber, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckHungary", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckHungary(string RegistrationNumber, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckHungary", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckHungaryAsync(string RegistrationNumber, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckUAE", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckUAE(string RegistrationNumber, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckUAE", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckUAEAsync(string RegistrationNumber, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckSlovakia", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckSlovakia(string RegistrationNumber, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckSlovakia", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckSlovakiaAsync(string RegistrationNumber, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/VinCheck", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle VinCheck(string Vin, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/VinCheck", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> VinCheckAsync(string Vin, string username);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckMotorBikeUK", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckMotorBikeUK(string RegistrationNumber, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://regcheck.org.uk/CheckMotorBikeUK", ReplyAction="*")]
-        System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckMotorBikeUKAsync(string RegistrationNumber, string username);
     }
     
     /// <remarks/>
@@ -2623,192 +2551,96 @@ namespace CustomerPoint.VehicleInfo.RegCheckApi {
             return base.Channel.CarSpecifications(make, model, year);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.DataGrid> CarSpecificationsAsync(string make, string model, int year) {
-            return base.Channel.CarSpecificationsAsync(make, model, year);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.UKMOTData UKMOT(string RegistrationNumber, string Model, string username) {
             return base.Channel.UKMOT(RegistrationNumber, Model, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.UKMOTData> UKMOTAsync(string RegistrationNumber, string Model, string username) {
-            return base.Channel.UKMOTAsync(RegistrationNumber, Model, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckSouthAfrica(string RegistrationNumber, string username) {
             return base.Channel.CheckSouthAfrica(RegistrationNumber, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckSouthAfricaAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckSouthAfricaAsync(RegistrationNumber, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckEstonia(string RegistrationNumber, string username) {
             return base.Channel.CheckEstonia(RegistrationNumber, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckEstoniaAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckEstoniaAsync(RegistrationNumber, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckNewZealand(string RegistrationNumber, string username) {
             return base.Channel.CheckNewZealand(RegistrationNumber, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckNewZealandAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckNewZealandAsync(RegistrationNumber, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckUSA(string RegistrationNumber, string State, string username) {
             return base.Channel.CheckUSA(RegistrationNumber, State, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckUSAAsync(string RegistrationNumber, string State, string username) {
-            return base.Channel.CheckUSAAsync(RegistrationNumber, State, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckAustralia(string RegistrationNumber, string State, string username) {
             return base.Channel.CheckAustralia(RegistrationNumber, State, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckAustraliaAsync(string RegistrationNumber, string State, string username) {
-            return base.Channel.CheckAustraliaAsync(RegistrationNumber, State, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckSpain(string RegistrationNumber, string username) {
             return base.Channel.CheckSpain(RegistrationNumber, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckSpainAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckSpainAsync(RegistrationNumber, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckFrance(string RegistrationNumber, string username) {
             return base.Channel.CheckFrance(RegistrationNumber, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckFranceAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckFranceAsync(RegistrationNumber, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckDenmark(string RegistrationNumber, string username) {
             return base.Channel.CheckDenmark(RegistrationNumber, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckDenmarkAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckDenmarkAsync(RegistrationNumber, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckFinland(string RegistrationNumber, string username) {
             return base.Channel.CheckFinland(RegistrationNumber, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckFinlandAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckFinlandAsync(RegistrationNumber, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckSweden(string RegistrationNumber, string username) {
             return base.Channel.CheckSweden(RegistrationNumber, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckSwedenAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckSwedenAsync(RegistrationNumber, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckNorway(string RegistrationNumber, string username) {
             return base.Channel.CheckNorway(RegistrationNumber, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckNorwayAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckNorwayAsync(RegistrationNumber, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckPortugal(string RegistrationNumber, string username) {
             return base.Channel.CheckPortugal(RegistrationNumber, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckPortugalAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckPortugalAsync(RegistrationNumber, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckNetherlands(string RegistrationNumber, string username) {
             return base.Channel.CheckNetherlands(RegistrationNumber, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckNetherlandsAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckNetherlandsAsync(RegistrationNumber, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckItaly(string RegistrationNumber, string username) {
             return base.Channel.CheckItaly(RegistrationNumber, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckItalyAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckItalyAsync(RegistrationNumber, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckIreland(string RegistrationNumber, string username) {
             return base.Channel.CheckIreland(RegistrationNumber, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckIrelandAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckIrelandAsync(RegistrationNumber, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle Check(string RegistrationNumber, string username) {
             return base.Channel.Check(RegistrationNumber, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckAsync(RegistrationNumber, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckIndia(string RegistrationNumber, string username) {
             return base.Channel.CheckIndia(RegistrationNumber, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckIndiaAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckIndiaAsync(RegistrationNumber, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckHungary(string RegistrationNumber, string username) {
             return base.Channel.CheckHungary(RegistrationNumber, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckHungaryAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckHungaryAsync(RegistrationNumber, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckUAE(string RegistrationNumber, string username) {
             return base.Channel.CheckUAE(RegistrationNumber, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckUAEAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckUAEAsync(RegistrationNumber, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckSlovakia(string RegistrationNumber, string username) {
             return base.Channel.CheckSlovakia(RegistrationNumber, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckSlovakiaAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckSlovakiaAsync(RegistrationNumber, username);
         }
         
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle VinCheck(string Vin, string username) {
             return base.Channel.VinCheck(Vin, username);
         }
         
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> VinCheckAsync(string Vin, string username) {
-            return base.Channel.VinCheckAsync(Vin, username);
-        }
-        
         public CustomerPoint.VehicleInfo.RegCheckApi.Vehicle CheckMotorBikeUK(string RegistrationNumber, string username) {
             return base.Channel.CheckMotorBikeUK(RegistrationNumber, username);
-        }
-        
-        public System.Threading.Tasks.Task<CustomerPoint.VehicleInfo.RegCheckApi.Vehicle> CheckMotorBikeUKAsync(string RegistrationNumber, string username) {
-            return base.Channel.CheckMotorBikeUKAsync(RegistrationNumber, username);
         }
     }
 }

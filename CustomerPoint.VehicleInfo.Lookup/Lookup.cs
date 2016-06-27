@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Runtime.Caching;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using CustomerPoint.VehicleInfo.Models;
 using CustomerPoint.VehicleInfo.RegCheckApi;
 
@@ -9,7 +8,7 @@ namespace CustomerPoint.VehicleInfo
 {
     public static class Lookup
     {
-        public static async Task<VehicleData> Vehicle(string RegistrationNumber)
+        public static VehicleData Vehicle(string RegistrationNumber)
         {
             if (string.IsNullOrWhiteSpace(RegistrationNumber))
             {
@@ -25,17 +24,17 @@ namespace CustomerPoint.VehicleInfo
             var Cache = MemoryCache.Default;
             var CacheName = "VehicleInfo-" + RegistrationNumber;
 
+            vd = (VehicleData)Cache.Get(CacheName);
+
             // Check if data is cached already
-            if (!Cache.Contains(CacheName))
+            if (vd == null)
             {
-                var ApiClient = new CarRegSoapClient();
-                //ApiClient.Endpoint.Address = new System.ServiceModel.EndpointAddress("https://www.regcheck.org.uk/api/reg.asmx");
+                var Binding = new System.ServiceModel.BasicHttpBinding();
+                Binding.Security = new System.ServiceModel.BasicHttpSecurity() { Mode = System.ServiceModel.BasicHttpSecurityMode.Transport };
 
-                //var Binding = new System.ServiceModel.BasicHttpBinding();
-                //Binding.Security = new System.ServiceModel.BasicHttpSecurity() { Mode = System.ServiceModel.BasicHttpSecurityMode.Transport };
-                //ApiClient.Endpoint.Binding = Binding;
+                var ApiClient = new CarRegSoapClient(Binding, new System.ServiceModel.EndpointAddress("https://www.regcheck.org.uk/api/reg.asmx"));
 
-                var Spec = await ApiClient.CheckAsync(RegistrationNumber, Properties.Settings.Default.RegCheckApiKey);
+                var Spec = ApiClient.Check(RegistrationNumber, Properties.Settings.Default.RegCheckApiKey);
 
                 if (Spec != null)
                 {
@@ -55,13 +54,9 @@ namespace CustomerPoint.VehicleInfo
                                     AbsoluteExpiration = System.DateTimeOffset.UtcNow.AddDays(1)
                                 });
                 }
+            }
 
-                return null;
-            }
-            else
-            {
-                return (VehicleData)Cache.Get(CacheName);
-            }
+            return vd;
         }
     }
 }
