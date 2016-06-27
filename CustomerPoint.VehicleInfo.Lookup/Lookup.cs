@@ -29,6 +29,12 @@ namespace CustomerPoint.VehicleInfo
             if (!Cache.Contains(CacheName))
             {
                 var ApiClient = new CarRegSoapClient();
+                ApiClient.Endpoint.Address = new System.ServiceModel.EndpointAddress("https://www.regcheck.org.uk/api/reg.asmx");
+
+                var Binding = new System.ServiceModel.BasicHttpBinding();
+                Binding.Security = new System.ServiceModel.BasicHttpSecurity() { Mode = System.ServiceModel.BasicHttpSecurityMode.Transport };
+                ApiClient.Endpoint.Binding = Binding;
+
                 var Spec = await ApiClient.CheckAsync(RegistrationNumber, Properties.Settings.Default.RegCheckApiKey);
 
                 if (Spec != null)
